@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Colin Gross">
   <meta name="dcterms.date" content="2026-06-17">
-  <title>Cram Amalgam</title>
+  <title>Crams for StructVars</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -102,14 +102,13 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Cram Amalgam</h1>
+  <h1 class="title">Crams for StructVars</h1>
   <p class="author">Colin Gross</p>
-  <p class="date">2026-06-17</p>
+  <p class="date">2026-06-18</p>
 </section>
 
-<section id="amalgamated-strucvar-crams"
-class="title-slide slide level1">
-<h1>Amalgamated Strucvar Crams</h1>
+<section id="amalgamated-crams" class="title-slide slide level1">
+<h1>Amalgamated Crams</h1>
 <p>Making a smaller set of cram files.</p>
 </section>
 
@@ -140,9 +139,8 @@ directories.</p>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
 </section></section>
 <section>
-<section id="structral-variants-approach"
-class="title-slide slide level1">
-<h1>Structral Variants Approach</h1>
+<section id="sv-approach" class="title-slide slide level1">
+<h1>SV Approach</h1>
 <ol type="1">
 <li>Subset SVs into non-overlapping sets</li>
 <li>Pick single sample per variant</li>
@@ -150,13 +148,15 @@ class="title-slide slide level1">
 <li>Compile each set into a cram</li>
 </ol>
 </section>
-<section id="separate-size" class="slide level2">
-<h2>Separate Size</h2>
-<p>Most sequence reads are ~200 bp</p>
-<pre><code>🬋🬋🬋🬋SV1🬋🬋🬋🬋🬋🬋    🬋🬋🬋🬋🬋🬋🬋🬋SV2🬋🬋🬋🬋🬋       🬋🬋🬋🬋🬋🬋🬋🬋SV3🬋🬋🬋🬋🬋
-🭺🭺🭺🭺     🭺🭺🭺🭺🭺🭺
-              🭺🭺🭺🭺🭺   🭺🭺🭺🭺🭺   🭺🭺🭺🭺🭺
-                                  🭺🭺🭺🭺🭺🭺🭺🭺          🭺🭺🭺🭺🭺🭺🭺</code></pre>
+<section id="separation-distance" class="slide level2">
+<h2>Separation Distance</h2>
+<ul>
+<li>Most sequence reads are ~200 bp</li>
+<li>SV boundaries determine the range requests</li>
+</ul>
+<pre><code>🬋🬋🬋SV1🬋🬋🬋🬋   🬋🬋🬋🬋SV2🬋🬋 
+🭺🭺🭺🭺   🭺🭺🭺🭺
+           🭺🭺🭺🭺🭺    🭺🭺🭺</code></pre>
 </section>
 <section id="structvar-subset-crams" class="slide level2">
 <h2>Structvar Subset Crams</h2>
@@ -164,6 +164,33 @@ class="title-slide slide level1">
 <ul>
 <li>480K SNVs</li>
 <li>3.5K cram files</li>
+</ul>
+</section></section>
+<section>
+<section id="igv.js-scrolling" class="title-slide slide level1">
+<h1>IGV.js Scrolling</h1>
+<p>Current problem with the approach is that it can expose potentially
+confusing or misleading data.</p>
+<ul>
+<li>UI allows scrolling upstream/downstream</li>
+<li>Will reveal unrelated sequences</li>
+</ul>
+</section>
+<section id="js-solution" class="slide level2">
+<h2>JS Solution</h2>
+<ul>
+<li>Use IGV’s event <code>locuschange</code> &gt; IGV provides a simple
+event system to listen for user interactions. Event handlers can be
+attached to the “Browser” object with the on function</li>
+<li>Guerilla patch IGV.js</li>
+</ul>
+</section>
+<section id="api-solution" class="slide level2">
+<h2>API Solution</h2>
+<p>Since the BRAVO API is providing the byte stream, it can be limited
+to a specific region.</p>
+<ul>
+<li>Bake in SV id into request to determine limits to data returned</li>
 </ul>
 </section></section>
     </div>
