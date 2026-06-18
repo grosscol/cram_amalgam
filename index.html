@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Display Lab">
-  <title>Demo Slides</title>
+  <meta name="author" content="Colin Gross">
+  <meta name="dcterms.date" content="2026-06-17">
+  <title>Cram Amalgam</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -101,102 +102,69 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Demo Slides</h1>
-  <p class="author">Display Lab</p>
+  <h1 class="title">Cram Amalgam</h1>
+  <p class="author">Colin Gross</p>
   <p class="date">2026-06-17</p>
 </section>
 
-<section id="first-title" class="title-slide slide level1">
-<h1>First Title</h1>
-<p>Welcome to the first slide.</p>
-<p>Display Lab</p>
-<p>2019-05-21</p>
-</section>
-
-<section id="second-title" class="title-slide slide level1">
-<h1>Second Title</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae justo
-eget magna fermentum iaculis.</p>
+<section id="amalgamated-strucvar-crams"
+class="title-slide slide level1">
+<h1>Amalgamated Strucvar Crams</h1>
+<p>Making a smaller set of cram files.</p>
 </section>
 
 <section>
-<section id="third-title" class="title-slide slide level1">
-<h1>Third Title</h1>
-<p>Tortor pretium viverra suspendisse potenti nullam ac tortor vitae.
-Nunc mattis enim ut tellus elementum sagittis vitae et.</p>
-</section>
-<section id="sub-1" class="slide level2">
-<h2>3 Sub 1</h2>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">puts</span> <span class="st">&quot;Hello World&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="kw">..</span><span class="dv">10</span>)<span class="at">.each</span><span class="kw">{</span> <span class="kw">|</span>n<span class="kw">|</span> <span class="fu">puts</span> n<span class="kw">+</span><span class="dv">10</span> <span class="kw">}</span></span></code></pre></div>
-<p>Enim nulla aliquet porttitor lacus luctus accumsan. Nulla
-pellentesque dignissim enim sit amet.</p>
-</section>
-<section id="sub-2" class="slide level2">
-<h2>3 Sub 2</h2>
-<p><del>Auctor neque vitae tempus quam pellentesque.</del></p>
-<h3
-id="scelerisque-viverra-mauris-in-aliquam-sem-fringilla.">Scelerisque
-viverra mauris in aliquam sem fringilla.</h3>
-<p>Donec pretium vulputate sapien nec sagittis aliquam malesuada
-bibendum.</p>
-</section>
-<section id="sub-3" class="slide level2">
-<h2>3 Sub 3</h2>
-<p><em>Massa id neque aliquam vestibulum morbi blandit cursus risus
-at.</em> <em>Vestibulum sed arcu non odio euismod.</em> <strong>Ut
-tellus elementum sagittis vitae et leo duis ut.</strong></p>
-</section></section>
-<section id="fourth-title" class="title-slide slide level1">
-<h1>Fourth Title</h1>
+<section id="snvs-have-many-files" class="title-slide slide level1">
+<h1>SNVs have many files</h1>
+<p>Sample based system subsetting</p>
 <ul>
-<li>Duis at tellus at urna condimentum mattis pellentesque.</li>
-<li>Morbi leo urna molestie at elementum eu facilisis sed.</li>
-<li>Vel elit scelerisque mauris pellentesque pulvinar pellentesque.</li>
+<li>7M SNVs</li>
+<li>150K samples</li>
+<li>300K subsetted cram files</li>
 </ul>
 </section>
-
-<section id="section" class="title-slide slide level1">
-<h1></h1>
+<section id="snv-hex-digest-storage" class="slide level2">
+<h2>SNV Hex Digest Storage</h2>
+<p>Handle large number of files by dividing up into many
+directories.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">∫</span> ls sequences/</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">00</span>  08  10  18  20  28  30  ...</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">01</span>  09  11  19  21  29  31  ...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">02</span>  0a  12  1a  22  2a  32  ...</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">∫</span> sequences/00/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">109966.cram</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">109966.cram.crai</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">110015.cram</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">110015.cram.crai</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
+</section></section>
+<section>
+<section id="structral-variants-approach"
+class="title-slide slide level1">
+<h1>Structral Variants Approach</h1>
 <ol type="1">
-<li>Pellentesque diam volutpat commodo sed egestas egestas fringilla
-phasellus faucibus.</li>
-<li>Curabitur vitae nunc sed velit dignissim sodales ut eu.</li>
-<li>Urna nec tincidunt praesent semper feugiat nibh sed.</li>
+<li>Subset SVs into non-overlapping sets</li>
+<li>Pick single sample per variant</li>
+<li>Take sequences from each sample</li>
+<li>Compile each set into a cram</li>
 </ol>
 </section>
-
-<section id="sixth-title" class="title-slide slide level1">
-<h1>Sixth Title</h1>
+<section id="separate-size" class="slide level2">
+<h2>Separate Size</h2>
+<p>Most sequence reads are ~200 bp</p>
+<pre><code>🬋🬋🬋🬋SV1🬋🬋    🬋🬋SV2🬋🬋🬋🬋🬋     
+🭺🭺🭺🭺   🭺🭺🭺🭺
+          🭺🭺🭺🭺🭺   🭺🭺🭺🭺🭺</code></pre>
+</section>
+<section id="structvar-subset-crams" class="slide level2">
+<h2>Structvar Subset Crams</h2>
+<p>Variant based subseting</p>
 <ul>
-<li>Suspendisse potenti nullam ac tortor vitae.</li>
-<li>Congue quisque egestas diam in arcu cursus euismod.</li>
-<li>Consectetur adipiscing elit duis tristique sollicitudin.</li>
+<li>480K SNVs</li>
+<li>3.5K cram files</li>
 </ul>
-</section>
-
-<section>
-<section id="seventh-title" class="title-slide slide level1">
-<h1>Seventh Title</h1>
-<p>Image content</p>
-<p><img data-src="assets/top_perf.svg" /></p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<figure>
-<img data-src="assets/top_perf.svg" width="250" alt="image title" />
-<figcaption aria-hidden="true">image title</figcaption>
-</figure>
 </section></section>
-<section id="seventh-title-1" class="title-slide slide level1">
-<h1>Seventh Title</h1>
-<p>Incremental fragments</p>
-<p><span class="fragment"> stuff </span></p>
-<p><span class="fragment"> other </span></p>
-<p><span class="fragment"> stuff </span></p>
-</section>
     </div>
   </div>
 
